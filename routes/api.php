@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ComputerbrandController;
+use App\Http\Controllers\TypeequipmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,11 @@ Route::post('/brand/create', [ComputerbrandController::class, 'create']);
 Route::get('/brand/show/{id}', [ComputerbrandController::class, 'show']);
 Route::put('/brand/update/{id}', [ComputerbrandController::class, 'update']);
 Route::delete('/brand/delete/{id}', [ComputerbrandController::class, 'destroy']);
+
+
+
+Route::get('/typeequipments', [TypeequipmentController::class, 'index']);
+Route::post('/typeequipment/create', [TypeequipmentController::class, 'create']);
+Route::get('/typeequipment/show/{id}', [TypeequipmentController::class, 'show']);
+Route::put('/typeequipment/update/{id}', [TypeequipmentController::class, 'update']);
+Route::delete('/typeequipment/delete/{id}', [TypeequipmentController::class, 'destroy']);

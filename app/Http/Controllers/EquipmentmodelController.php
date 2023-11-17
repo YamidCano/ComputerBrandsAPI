@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\typeequipment;
+use App\Models\equipmentmodel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class TypeequipmentController extends Controller
+class EquipmentmodelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $typeequipments = typeequipment::all();
+        $equipmentmodels = equipmentmodel::all();
 
         return Response()->json([
             'status' => true,
-            'data' => $typeequipments ?? [],
+            'data' => $equipmentmodels ?? [],
         ], 200);
     }
 
@@ -27,25 +27,26 @@ class TypeequipmentController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:typeequipments',
+            'name' => 'required',
         ], [
-            'name.required' => 'El campo Item es obligatorio',
-            'name.unique' => 'El Item ya se encuentra registrado'
+            'name.required' => 'El campo Item es obligatorio'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $typeequipment = typeequipment::create([
+        $equipmentmodel = equipmentmodel::create([
+            'id_brand' => $request->idBrand,
+            'id_brand' => $request->idBrand,
             'name' => $request->name
         ]);
 
-        $typeequipment->save();
+        $equipmentmodel->save();
 
         return Response()->json([
             'status' => true,
-            'data' => $typeequipment ?? []
+            'data' => $equipmentmodel ?? []
         ], 200);
     }
 
@@ -62,22 +63,21 @@ class TypeequipmentController extends Controller
      */
     public function show($id)
     {
-        $typeequipment = typeequipment::find($id);
+        $equipmentmodel = equipmentmodel::find($id);
 
-        if (!$typeequipment) {
+        if (!$equipmentmodel) {
             return response()->json(['message' => 'Item no encontrada'], 404);
         }
         return response()->json([
             'status' => true,
-            'data' => $typeequipment
+            'data' => $equipmentmodel
         ], 200);
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(typeequipment $typeequipment)
+    public function edit(equipmentmodel $equipmentmodel)
     {
         //
     }
@@ -87,29 +87,29 @@ class TypeequipmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $typeequipment = typeequipment::find($id);
+        $equipmentmodel = equipmentmodel::find($id);
 
-        if (!$typeequipment) {
+        if (!$equipmentmodel) {
             return response()->json(['message' => 'Item no encontrado'], 404);
         }
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:computerbrands,name,' . $id,
+            'name' => 'required',
         ], [
-            'name.required' => 'El campo Item es obligatorio',
-            'name.unique' => 'El Item ya se encuentra registrado'
+            'name.required' => 'El campo Item es obligatorio'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $typeequipment->name = $request->name;
-        $typeequipment->save();
+        $equipmentmodel->name = $request->name;
+        $equipmentmodel->id_brand = $request->idBrand;
+        $equipmentmodel->save();
 
         return response()->json([
             'status' => true,
-            'data' => $typeequipment,
+            'data' => $equipmentmodel,
             'message' => 'Item actualizado exitosamente'
         ], 200);
     }
@@ -119,17 +119,17 @@ class TypeequipmentController extends Controller
      */
     public function destroy($id)
     {
-        $typeequipment = typeequipment::find($id);
+        $equipmentmodel = equipmentmodel::find($id);
 
-        if (!$typeequipment) {
+        if (!$equipmentmodel) {
             return response()->json(['message' => 'Item no encontrado'], 404);
         }
 
-        $typeequipment->delete();
+        $equipmentmodel->delete();
 
         return response()->json([
             'status' => true,
-            'data' => $typeequipment,
+            'data' => $equipmentmodel,
             'message' => 'Item eliminado exitosamente'
         ], 200);
     }

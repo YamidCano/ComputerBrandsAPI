@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ComputerbrandController;
 use App\Http\Controllers\TypeequipmentController;
+use App\Http\Controllers\EquipmentmodelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,14 @@ Route::get('/brand/show/{id}', [ComputerbrandController::class, 'show']);
 Route::put('/brand/update/{id}', [ComputerbrandController::class, 'update']);
 Route::delete('/brand/delete/{id}', [ComputerbrandController::class, 'destroy']);
 
-
-
 Route::get('/typeequipments', [TypeequipmentController::class, 'index']);
 Route::post('/typeequipment/create', [TypeequipmentController::class, 'create']);
 Route::get('/typeequipment/show/{id}', [TypeequipmentController::class, 'show']);
 Route::put('/typeequipment/update/{id}', [TypeequipmentController::class, 'update']);
 Route::delete('/typeequipment/delete/{id}', [TypeequipmentController::class, 'destroy']);
+
+Route::get('/equipmentmodels', [EquipmentmodelController::class, 'index']);
+Route::post('/equipmentmodel/create', [EquipmentmodelController::class, 'create']);
+Route::get('/equipmentmodel/show/{id}', [EquipmentmodelController::class, 'show']);
+Route::put('/equipmentmodel/update/{id}', [EquipmentmodelController::class, 'update']);
+Route::delete('/equipmentmodel/delete/{id}', [EquipmentmodelController::class, 'destroy']);

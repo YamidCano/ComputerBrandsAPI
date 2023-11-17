@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/brands', [ComputerbrandController::class, 'index']);
-Route::post('/brands/create', [ComputerbrandController::class, 'create']);
-Route::get('/brands/show/{id}', [ComputerbrandController::class, 'show']);
-Route::put('/brands/update/{id}', [ComputerbrandController::class, 'update']);
-Route::delete('/brands/delete/{id}', [ComputerbrandController::class, 'destroy']);
+Route::post('/brand/create', [ComputerbrandController::class, 'create']);
+Route::get('/brand/show/{id}', [ComputerbrandController::class, 'show']);
+Route::put('/brand/update/{id}', [ComputerbrandController::class, 'update']);
+Route::delete('/brand/delete/{id}', [ComputerbrandController::class, 'destroy']);
